@@ -1,15 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+ 
+  /*
+  // Định nghĩa biến name, không nên ép type
+  const [name, setName] = useState("");
+  // Định nghĩa Object
+  const [test, setTest] = useState({
+    name: "HoiDanIT",
+    age: 21
+  });
+  */
+
+  const [count, setCount] = useState(0);
+
   return (
     <View style={styles.container}>
-      <Text style={[styles.hearder, styles.marginBottom]} >Hello Word 1</Text> 
-      <Text style={[styles.footer, styles.marginBottom]}>Hello Word 2</Text> 
-      <Text style={styles.parent}>
-        Hello Word 3 
-        <Text style={styles.children}>- Hỏi Dân IT</Text></Text> 
-      <StatusBar style="auto" />
+      <Text style={{fontSize: 60, fontWeight: "bold"}}>
+        count: {count}
+      </Text>
+
+      {/* Bọc button trong view để tạo style cho nút */}
+      <Text style={{borderRadius: 10, marginTop: 20, overflow: "hidden"}}>
+        {/* Mỗi lần chạm vào nút button cout sẽ tăng nên 1 */}
+        <Button 
+        color={"green"}
+        title="Increment" onPress ={() => setCount(count + 1)}/>
+      </Text>
     </View>
   );
 }
@@ -61,5 +80,5 @@ const styles = StyleSheet.create({
 
   marginBottom: {
     marginBottom: 10
-  }
+  },
 });
