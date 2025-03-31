@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
  
@@ -15,13 +15,38 @@ export default function App() {
   */
 
   const [count, setCount] = useState(0);
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
 
   return (
     <View style={styles.container}>
+      <View>
+        <Text style={{fontSize: 60, fontWeight: "bold"}}>Name: {name}</Text>
+        <TextInput 
+          multiline // Thuộc tinh co giãn đảm bảo hiển thị hết các kí tự trong ô Input.
+          placeholder="Nhập một thứ gì đó vào Input này" // "Người giữ chỗ", gợi ý cho người dùng cần nhập gì vào Input.
+          autoCapitalize={"characters"} // Thay đổi font chữ viết hoa, viết thường
+          // value= "" // Là thuộc tính giá trị hiện tại của text Input.
+          onChangeText={(value) => setName(value)} // Hàm callBack được gọi khi thuộc tính trong Input thay đổi
+          style={styles.textInputStyle}
+        />
+      </View>
+
+      <View>
+        <Text style={{fontSize: 60, fontWeight: "bold"}}>Age: {age}</Text>
+        <TextInput 
+          multiline // Thuộc tinh co giãn đảm bảo hiển thị hết các kí tự trong ô Input.
+          placeholder="Nhập một thứ gì đó vào Input này" // "Người giữ chỗ", gợi ý cho người dùng cần nhập gì vào Input.
+          autoCapitalize={"characters"} // Thay đổi font chữ viết hoa, viết thường
+          // value= "" // Là thuộc tính giá trị hiện tại của text Input.
+          onChangeText={(value) => setAge(+value)} // Hàm callBack được gọi khi thuộc tính trong Input thay đổi
+          style={styles.textInputStyle}
+        />
+      </View>
+
       <Text style={{fontSize: 60, fontWeight: "bold"}}>
         count: {count}
       </Text>
-
       {/* Bọc button trong view để tạo style cho nút */}
       <Text style={{borderRadius: 10, marginTop: 20, overflow: "hidden"}}>
         {/* Mỗi lần chạm vào nút button cout sẽ tăng nên 1 */}
@@ -42,43 +67,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  hearder: {
-    fontSize: 30,
-    fontWeight: "bold", // Ngang "600"
-    color: "green",
+  textInputStyle: {
+    borderStyle: "solid",
     borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 10,
-    padding: 10
-  },
-
-  footer: {
-    fontSize: 30,
-    fontWeight: "bold", // Ngang "600"
-    color: "blue",
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 10,
-    padding: 10
-  },
-
-  // Không có fontWeight
-  parent: {
-    color: "red",
-    fontSize: 30,
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 10,
-    padding: 10
-  },
-
-  children: {
-    color: "pink",
-    fontSize: 25,
-    fontWeight: "600", // Ngang "bold"
-  },
-
-  marginBottom: {
-    marginBottom: 10
+    borderColor: "back",
+    borderRadius: 20,
+    padding: 20
   },
 });
